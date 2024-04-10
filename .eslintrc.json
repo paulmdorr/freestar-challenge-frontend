@@ -1,6 +1,11 @@
 {
   "plugins": ["prettier"],
-  "extends": ["next/core-web-vitals", "plugin:prettier/recommended"],
+  "extends": [
+    "next/babel",
+    "next/core-web-vitals",
+    "plugin:prettier/recommended",
+    "plugin:cypress/recommended"
+  ],
   "rules": {
     "no-console": "warn",
     "prettier/prettier": "warn"
