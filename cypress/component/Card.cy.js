@@ -10,4 +10,9 @@ describe('Card.cy.js', () => {
     cy.mount(<Card rank="queen" suit="hearts" />);
     cy.get('img').should('have.attr', 'alt', 'queen of hearts');
   });
+
+  it('can create a face-down Card', () => {
+    cy.mount(<Card facedown />);
+    cy.get('img').should('have.attr', 'alt', 'facedown card');
+  });
 });
