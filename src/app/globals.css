@@ -87,12 +87,13 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
+  background: radial-gradient(
+      circle at center,
+      rgb(48, 121, 85),
+      rgb(20, 68, 44)
     )
-    rgb(var(--background-start-rgb));
+    no-repeat;
+  height: 100vh;
 }
 
 a {

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const CardsContainer = styled.div`
   display: flex;
+  height: 333px;
 `;
 
 const CardWrapper = styled.div`

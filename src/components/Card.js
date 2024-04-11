@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 
-const CardContainer = styled.div`
-  transform: rotate(${({ tiltDegrees }) => tiltDegrees}deg);
-`;
-
 function Card({ rank, suit, tilt = false, facedown = false }) {
+  const CardContainer = styled.div`
+    transform: rotate(${tilt ? getRandomTilt() : 0}deg);
+  `;
+
   return (
-    <CardContainer tiltDegrees={tilt ? getRandomTilt() : 0}>
+    <CardContainer>
       <Image
         src={getImagePath(rank, suit, facedown)}
         alt={getImageAlt(rank, suit, facedown)}
