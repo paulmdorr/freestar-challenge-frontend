@@ -1,8 +1,15 @@
 import Image from 'next/image';
+import styled from 'styled-components';
 
-function Card({ rank, suit }) {
+const CardContainer = styled.div`
+  display: inline-block;
+  transform: rotate(${({ tiltDegrees }) => tiltDegrees}deg);
+  margin: 0.5rem;
+`;
+
+function Card({ rank, suit, tilt = false }) {
   return (
-    <div>
+    <CardContainer tiltDegrees={tilt ? getRandomTilt() : 0}>
       <Image
         src={`/cards/fronts/${suit}_${rank}.svg`}
         alt={`${rank} of ${suit}`}
@@ -10,8 +17,12 @@ function Card({ rank, suit }) {
         height={333}
         priority
       />
-    </div>
+    </CardContainer>
   );
+}
+
+function getRandomTilt() {
+  return Math.floor(Math.random() * 7) - 3;
 }
 
 export default Card;
