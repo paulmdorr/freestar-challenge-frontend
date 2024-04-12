@@ -1,30 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import styled from 'styled-components';
 import { createGame, hit, hold } from './actions';
 import Player from '@/components/Player';
 import Button from '@/components/Button';
 import HoldAndHitButtons from '@/components/HoldAndHitButtons';
-
-const PlayersContainer = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-`;
-
-const Main = styled.main`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
-
-const Input = styled.input`
-  border: 1px solid black;
-  padding: 5px;
-`;
+import decideWinner from '@/utils/decideWinner';
+import { Input, Main, PlayersContainer } from '@/styles/page.styles';
 
 export default function Home() {
   const [game, setGame] = useState(null);
@@ -52,18 +34,6 @@ export default function Home() {
     hold(playerName).then((data) => {
       setGame(data.game);
     });
-  };
-
-  const decideWinner = (game) => {
-    if (game.winner === 'dealer') {
-      return 'Dealer wins!';
-    }
-
-    if (game.winner === 'player') {
-      return 'Player wins!';
-    }
-
-    return "It's a tie!";
   };
 
   return (
