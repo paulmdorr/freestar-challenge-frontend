@@ -1,8 +1,8 @@
-import { Inter } from 'next/font/google';
+import { M_PLUS_1 } from 'next/font/google';
 import './globals.css';
 import StyledComponentsRegistry from './lib/registry';
 
-const inter = Inter({ subsets: ['latin'] });
+const mplus1 = M_PLUS_1({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Create Next App',
@@ -12,7 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={mplus1.className}>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
     </html>
