@@ -4,14 +4,14 @@ const PlayersContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 30px;
 `;
 
 const Main = styled.main`
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 `;
 
 const Input = styled.input`

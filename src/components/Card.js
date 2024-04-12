@@ -3,7 +3,7 @@ import { memo } from 'react';
 import styled from 'styled-components';
 
 const CARDS_ASPECT_RATIO = 234 / 333;
-const SMALL_CARD_HEIGHT = 170;
+const SMALL_CARD_HEIGHT = 150;
 
 function Card({ rank, suit, tilt = false, facedown = false }) {
   const CardContainer = styled.div`

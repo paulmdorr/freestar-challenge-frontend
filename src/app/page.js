@@ -39,7 +39,6 @@ export default function Home() {
   return (
     <Main>
       <h1>Blackjack</h1>
-      {game && game.state === 'gameOver' ? <h2>{decideWinner(game)}</h2> : null}
       {game && (
         <PlayersContainer>
           <Player player={game.dealer} />
@@ -54,6 +53,7 @@ export default function Home() {
           </div>
         </PlayersContainer>
       )}
+      {game && game.state === 'gameOver' ? <h2>{decideWinner(game)}</h2> : null}
       {(!game || game.state === 'gameOver') && (
         <>
           <Input

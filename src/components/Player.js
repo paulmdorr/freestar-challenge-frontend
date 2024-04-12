@@ -7,6 +7,7 @@ const CARDS_OFFSET = (CARDS_ASPECT_RATIO * SMALL_CARD_HEIGHT) / 3;
 
 const CardsContainer = styled.div`
   height: ${SMALL_CARD_HEIGHT}px;
+  position: relative;
   width: ${({ length }) =>
     SMALL_CARD_HEIGHT * CARDS_ASPECT_RATIO + length * CARDS_OFFSET}px;
 `;
@@ -16,13 +17,16 @@ const CardWrapper = styled.div`
   margin-left: ${({ offset }) => offset}px;
 `;
 
-function Player({ player: { name, hand, points } }) {
-  const capitalize = (string) =>
-    string.charAt(0).toUpperCase() + string.slice(1);
+const PlayerName = styled.h2`
+  margin-bottom: 10px;
+  text-align: center;
+  text-transform: capitalize;
+`;
 
+function Player({ player: { name, hand, points } }) {
   return (
     <div>
-      <h2>{capitalize(name)}</h2>
+      <PlayerName>{name}</PlayerName>
       <CardsContainer length={hand.length - 1}>
         {hand.map((card, index) => (
           <CardWrapper key={index} offset={index * CARDS_OFFSET}>

@@ -1,8 +1,12 @@
-import { M_PLUS_1 } from 'next/font/google';
+import { MuseoModerno } from 'next/font/google';
 import './globals.css';
 import StyledComponentsRegistry from './lib/registry';
 
-const mplus1 = M_PLUS_1({ subsets: ['latin'] });
+const museo = MuseoModerno({
+  subsets: ['latin'],
+  display: 'swap',
+  adjustFontFallback: false,
+});
 
 export const metadata = {
   title: 'Create Next App',
@@ -12,7 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={mplus1.className}>
+      <body className={museo.className}>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
     </html>
