@@ -52,8 +52,8 @@ export default function Home() {
       {game && game.state === 'gameOver' ? <h2>{decideWinner(game)}</h2> : null}
       {game ? (
         <PlayersContainer>
-          <Player name={game.dealer.name} hand={game.dealer.hand} />
-          <Player name={game.player.name} hand={game.player.hand} />
+          <Player player={game.dealer} />
+          <Player player={game.player} />
           <div>
             <Button
               onClick={() => holdAndSetState(game.player.name)}

@@ -8,8 +8,13 @@ describe('Player.cy.js', () => {
       { rank: 'king', suit: 'diamonds' },
       { rank: 'queen', suit: 'hearts' },
     ];
+    const player = {
+      name: playerName,
+      hand: cards,
+      points: 20,
+    };
 
-    cy.mount(<Player name={playerName} hand={cards} />);
+    cy.mount(<Player player={player} />);
     cy.get('h2').should('have.text', playerName);
     cy.get('img').should('have.length', 2);
     cy.get('img').first().should('have.attr', 'alt', 'king of diamonds');
@@ -17,7 +22,13 @@ describe('Player.cy.js', () => {
   });
 
   it('can create a player with no cards', () => {
-    cy.mount(<Player name={playerName} hand={[]} />);
+    const player = {
+      name: playerName,
+      hand: [],
+      points: 0,
+    };
+
+    cy.mount(<Player player={player} />);
     cy.get('h2').should('have.text', playerName);
     cy.get('img').should('not.exist');
   });
@@ -28,8 +39,13 @@ describe('Player.cy.js', () => {
       { rank: 'queen', suit: 'hearts' },
       { rank: 'jack', suit: 'clubs' },
     ];
+    const player = {
+      name: playerName,
+      hand: cards,
+      points: 30,
+    };
 
-    cy.mount(<Player name={playerName} hand={cards} />);
+    cy.mount(<Player player={player} />);
     cy.get('h2').should('have.text', playerName);
     cy.get('img').should('have.length', 3);
     cy.get('img').eq(0).should('have.attr', 'alt', 'king of diamonds');
@@ -50,8 +66,13 @@ describe('Player.cy.js', () => {
       { rank: '5', suit: 'diamonds' },
       { rank: '4', suit: 'hearts' },
     ];
+    const player = {
+      name: playerName,
+      hand: cards,
+      points: 100,
+    };
 
-    cy.mount(<Player name={playerName} hand={cards} />);
+    cy.mount(<Player player={player} />);
     cy.get('h2').should('have.text', playerName);
     cy.get('img').should('have.length', 10);
     cy.get('img').each(($img, index) => {
@@ -62,8 +83,13 @@ describe('Player.cy.js', () => {
 
   it('can create a player with two cards, one of which is face down', () => {
     const cards = [{ rank: 'king', suit: 'diamonds' }, { facedown: true }];
+    const player = {
+      name: playerName,
+      hand: cards,
+      points: 10,
+    };
 
-    cy.mount(<Player name={playerName} hand={cards} />);
+    cy.mount(<Player player={player} />);
     cy.get('h2').should('have.text', playerName);
     cy.get('img').should('have.length', 2);
     cy.get('img').first().should('have.attr', 'alt', 'king of diamonds');

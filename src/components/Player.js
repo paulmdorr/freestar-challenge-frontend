@@ -12,7 +12,7 @@ const CardWrapper = styled.div`
   margin-left: ${({ offset }) => offset}px;
 `;
 
-function Player({ name, hand }) {
+function Player({ player: { name, hand, points } }) {
   return (
     <div>
       <h2>{name}</h2>
@@ -28,6 +28,7 @@ function Player({ name, hand }) {
           </CardWrapper>
         ))}
       </CardsContainer>
+      {points ? <p>{points} points</p> : null}
     </div>
   );
 }
