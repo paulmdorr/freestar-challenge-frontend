@@ -4,7 +4,6 @@ const nextConfig = {
     styledComponents: true,
   },
   experimental: {
-    forceSwcTransforms: true,
     serverActions: true,
   },
 };

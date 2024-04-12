@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Card from './Card';
 import styled from 'styled-components';
 
@@ -33,4 +34,4 @@ function Player({ player: { name, hand, points } }) {
   );
 }
 
-export default Player;
+export default memo(Player);

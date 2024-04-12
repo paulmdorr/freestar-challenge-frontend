@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
-  background-color: ${({ color }) => color || 'hsla(189, 85%, 32%, 1)'};
+  background-color: ${({ color }) => color};
   border: 1px solid hsla(0, 0%, 0%, 0.4);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.0125),

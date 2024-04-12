@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { createGame, hit, hold } from './actions';
 import Player from '@/components/Player';
 import Button from '@/components/Button';
+import HoldAndHitButtons from '@/components/HoldAndHitButtons';
 
 const PlayersContainer = styled.div`
   align-items: center;
@@ -13,14 +14,33 @@ const PlayersContainer = styled.div`
   gap: 100px;
 `;
 
+const Main = styled.main`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+const Input = styled.input`
+  border: 1px solid black;
+  padding: 5px;
+`;
+
 export default function Home() {
   const [game, setGame] = useState(null);
+  const [playerName, setPlayerName] = useState('');
 
-  useEffect(() => {
-    createGame('Alice').then((data) => {
+  const newGame = (playerName) => {
+    if (!playerName || !playerName.trim()) {
+      alert('Please enter your name!');
+
+      return;
+    }
+
+    createGame(playerName).then((data) => {
       setGame(data.game);
     });
-  }, []);
+  };
 
   const hitAndSetState = (playerName) => {
     hit(playerName).then((data) => {
@@ -47,31 +67,37 @@ export default function Home() {
   };
 
   return (
-    <main>
+    <Main>
       <h1>Blackjack</h1>
       {game && game.state === 'gameOver' ? <h2>{decideWinner(game)}</h2> : null}
-      {game ? (
+      {game && (
         <PlayersContainer>
           <Player player={game.dealer} />
           <Player player={game.player} />
           <div>
-            <Button
-              onClick={() => holdAndSetState(game.player.name)}
-              color="hsla(4, 100%, 64%, 1)"
-            >
-              Hold
-            </Button>
-            <Button
-              onClick={() => hitAndSetState(game.player.name)}
-              color="hsla(142, 100%, 49%, 1)"
-            >
-              Hit
-            </Button>
+            {game.state === 'gameOver' ? null : (
+              <HoldAndHitButtons
+                holdCallback={() => holdAndSetState(game.player.name)}
+                hitCallback={() => hitAndSetState(game.player.name)}
+              />
+            )}
           </div>
         </PlayersContainer>
-      ) : (
-        'loading...'
       )}
-    </main>
+      {(!game || game.state === 'gameOver') && (
+        <>
+          <Input
+            onChange={(e) => setPlayerName(e.target.value)}
+            value={playerName}
+          />
+          <Button
+            onClick={() => newGame(playerName)}
+            color="hsla(193, 100%, 43%, 1)"
+          >
+            New Game
+          </Button>
+        </>
+      )}
+    </Main>
   );
 }
