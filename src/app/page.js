@@ -34,9 +34,22 @@ export default function Home() {
     });
   };
 
+  const decideWinner = (game) => {
+    if (game.winner === 'dealer') {
+      return 'Dealer wins!';
+    }
+
+    if (game.winner === 'player') {
+      return 'Player wins!';
+    }
+
+    return "It's a tie!";
+  };
+
   return (
     <main>
       <h1>Blackjack</h1>
+      {game && game.state === 'gameOver' ? <h2>{decideWinner(game)}</h2> : null}
       {game ? (
         <PlayersContainer>
           <Player name={game.dealer.name} hand={game.dealer.hand} />
