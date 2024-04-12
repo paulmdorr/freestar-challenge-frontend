@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { createGame, hit, hold } from './actions';
+import { createGame, hit, stand } from './actions';
 import Player from '@/components/Player';
 import Button from '@/components/Button';
-import HoldAndHitButtons from '@/components/HoldAndHitButtons';
+import StandAndHitButtons from '@/components/StandAndHitButtons';
 import decideWinner from '@/utils/decideWinner';
 import { Input, Main, PlayersContainer } from '@/styles/page.styles';
 
@@ -30,8 +30,8 @@ export default function Home() {
     });
   };
 
-  const holdAndSetState = (playerName) => {
-    hold(playerName).then((data) => {
+  const standAndSetState = (playerName) => {
+    stand(playerName).then((data) => {
       setGame(data.game);
     });
   };
@@ -45,8 +45,8 @@ export default function Home() {
           <Player player={game.player} />
           <div>
             {game.state === 'gameOver' ? null : (
-              <HoldAndHitButtons
-                holdCallback={() => holdAndSetState(game.player.name)}
+              <StandAndHitButtons
+                standCallback={() => standAndSetState(game.player.name)}
                 hitCallback={() => hitAndSetState(game.player.name)}
               />
             )}

@@ -33,9 +33,9 @@ export async function hit(playerName) {
   return await response.json();
 }
 
-export async function hold(playerName) {
+export async function stand(playerName) {
   const cookieHeader = cookies().get(`blackjack-${playerName}`).value;
-  const response = await fetch(`${NEXT_PUBLIC_BACKEND_URL}/game/hold`, {
+  const response = await fetch(`${NEXT_PUBLIC_BACKEND_URL}/game/stand`, {
     method: 'POST',
     headers: {
       Cookie: cookieHeader,
