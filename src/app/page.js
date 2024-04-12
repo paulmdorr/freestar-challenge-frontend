@@ -11,7 +11,7 @@ const PlayersContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: 40px;
 `;
 
 const Main = styled.main`

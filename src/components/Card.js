@@ -1,9 +1,14 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 
+const CARDS_ASPECT_RATIO = 234 / 333;
+const SMALL_CARD_HEIGHT = 170;
+
 function Card({ rank, suit, tilt = false, facedown = false }) {
   const CardContainer = styled.div`
     transform: rotate(${tilt ? getRandomTilt() : 0}deg);
+    height: ${SMALL_CARD_HEIGHT}px;
+    width: ${SMALL_CARD_HEIGHT * CARDS_ASPECT_RATIO}px;
   `;
 
   return (
@@ -11,8 +16,7 @@ function Card({ rank, suit, tilt = false, facedown = false }) {
       <Image
         src={getImagePath(rank, suit, facedown)}
         alt={getImageAlt(rank, suit, facedown)}
-        width={234}
-        height={333}
+        fill
         priority
       />
     </CardContainer>
@@ -40,3 +44,4 @@ function getImageAlt(rank, suit, facedown) {
 }
 
 export default Card;
+export { CARDS_ASPECT_RATIO, SMALL_CARD_HEIGHT };
