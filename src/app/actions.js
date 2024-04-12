@@ -1,7 +1,6 @@
 'use server';
 
 import { cookies } from 'next/headers';
-import { revalidatePath } from 'next/cache';
 const { NEXT_PUBLIC_BACKEND_URL } = process.env;
 
 export async function createGame(playerName) {
@@ -11,11 +10,10 @@ export async function createGame(playerName) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ playerName }),
+    cache: 'no-store',
   });
 
   cookies().set(`blackjack-${playerName}`, response.headers.get('set-cookie'));
-
-  revalidatePath('/');
 
   return await response.json();
 }
@@ -29,9 +27,8 @@ export async function hit(playerName) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ playerName }),
+    cache: 'no-store',
   });
-
-  revalidatePath('/');
 
   return await response.json();
 }
@@ -45,9 +42,8 @@ export async function hold(playerName) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ playerName }),
+    cache: 'no-store',
   });
-
-  revalidatePath('/');
 
   return await response.json();
 }

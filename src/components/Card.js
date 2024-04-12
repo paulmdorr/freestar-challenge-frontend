@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { memo } from 'react';
 import styled from 'styled-components';
 
 const CARDS_ASPECT_RATIO = 234 / 333;
@@ -43,5 +44,5 @@ function getImageAlt(rank, suit, facedown) {
   return `${rank} of ${suit}`;
 }
 
-export default Card;
+export default memo(Card);
 export { CARDS_ASPECT_RATIO, SMALL_CARD_HEIGHT };
