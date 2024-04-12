@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This file includes information on how to run the app and observations about further improvements.
+
+## Screenshots
+
+![In game](readme_files/game.png)
+![Game over](readme_files/game_over.png)
 
 ## Getting Started
 
-First, run the development server:
+First, set up the backend url env var. In the `.env` file, set `NEXT_PUBLIC_BACKEND_URL` to your backend URL. There is an example in the `.env.example` file.
+
+Then you can run the app:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Testing
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+I'm using Cypress for the testing. I've added only component testing, since I didn't have any more time to add e2e (which is configured).
 
-## Learn More
+I've run into some issues setting up coverage with Next.js, since Istanbul is not currently working with SWC.
 
-To learn more about Next.js, take a look at the following resources:
+I was able to run a coverage report with a `babel` config, but had to remove that in order for the app to work correctly.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Here's a screenshot of the coverage:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![Coverage Report](readme_files/coverage.png)
 
-## Deploy on Vercel
+In order to run the tests (without coverage support) you can use the following command:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run cypress:open
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Further improvements
+
+Here are some further improvements that I couldn't add for lack of time:
+
+- Currently the app renders everything from the server response. A better solution for this would be to use some king of store management, like `redux-saga` and update the UI components dispatching actions with incremental changes.
+- Related to the previous point, in a real-world game, the frontend would also implement some of the business logic (like dealing cards and points calculation), and reconcile with the backend, to allow faster interactions between the user and the app.
+- The UI could be improved with animations, using something like Framer Motion ([something like this](https://codesandbox.io/p/sandbox/framer-motion-layout-animations-forked-ywcz5q?file=%2Fsrc%2FApp.tsx)).
+- Add e2e testing.
